@@ -1,17 +1,18 @@
 class Solution {
     public int minimumCost(int[] cost) {
         
-        Arrays.sort(cost);
+        PriorityQueue<Integer> pq =  new PriorityQueue<>(Collections.reverseOrder());
+
+        for(int i : cost) pq.add(i);
 
         int money = 0;
         int t = 0;
-        // System.out.println(Arrays.toString(cost));
+        // System.out.println(pq);
 
-        for(int i = cost.length - 1; i >= 0; i--){
+        while(!pq.isEmpty()){
             t++;
-            if(t % 3 == 0)continue;
-            money += cost[i];
-            // System.out.println(cost[i]);
+            if(t % 3 == 0)pq.poll();
+            else money += pq.poll();
 
         }
         return money;
