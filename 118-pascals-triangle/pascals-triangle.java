@@ -1,19 +1,22 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
 
-
-        List<List<Integer>> result = new ArrayList<>();
         
+        List<List<Integer>> result = new ArrayList<>();
+
         for(int i = 0; i < numRows; i++){
-            
-            List<Integer> list = new ArrayList<>(Collections.nCopies(i + 1, 1));
-            
+            List<Integer> lis = new ArrayList<>();
+
+            lis.add(1);
+
             for(int j = 1; j < i; j++){
-                int ans = result.get(i - 1).get(j - 1) + result.get(i - 1).get(j);
-                list.set(j, ans);
+                lis.add(result.get(i - 1).get(j -1) +result.get(i - 1).get(j));
             }
-            result.add(list);
+
+            if(i > 0) lis.add(1);
+            result.add(lis);
         }
+
 
         return result;   
     }
