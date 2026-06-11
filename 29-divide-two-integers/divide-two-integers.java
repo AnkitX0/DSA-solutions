@@ -1,15 +1,32 @@
 class Solution {
     public int divide(int dividend, int divisor) {
 
-        int MaxNum = Integer.MAX_VALUE ;
-        int minNum = Integer.MIN_VALUE ;
+        if (dividend == Integer.MIN_VALUE && divisor == -1) {
+            return Integer.MAX_VALUE;
+        }
+        int ans = 0;
 
-        long ans = (long)dividend / (long)divisor;
+        if(dividend == divisor) return 1;
 
-        if(ans > MaxNum) return MaxNum;
+        boolean sign = true;
+        
+        if(dividend <=0 && divisor > 0) sign = false;
+        if(dividend > 0 && divisor < 0) sign  = false;
 
-        if(ans < minNum) return minNum;
+        long n = Math.abs((long) dividend);
+        long d = Math.abs((long) divisor);
 
-        return (int)ans;
+        while(n >= d){
+            int counter = 0;
+
+            while( n >= (d<<(counter+1))){
+                counter++;
+            }
+
+            ans += 1L << counter;
+            n -= (d << counter);
+        }
+
+        return sign ? (int)ans : (int)-ans;
     }
 }
