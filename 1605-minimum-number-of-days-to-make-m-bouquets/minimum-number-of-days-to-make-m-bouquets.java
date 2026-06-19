@@ -10,7 +10,7 @@ class Solution {
             low  = Math.min(low, bloom);
             high = Math.max(high, bloom); 
         }
-        int ans = -1;
+        // int ans = -1;
 
         while(low <= high){
             
@@ -30,11 +30,10 @@ class Solution {
             }
 
             if(bouq >= m){
-                ans = mid;
                 high = mid - 1;
             }
             else low = mid + 1;
         }
-        return ans;
+        return low;
     }
 }
