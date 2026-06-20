@@ -18,8 +18,11 @@ class Solution {
         
         return leftNode(root, 0);
 
-    }
+        
 
+    }
+        // 0 : right side
+        // 1:  left side
     private int leftNode (TreeNode root, int side){
 
         if(root == null ) return 0;
