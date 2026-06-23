@@ -4,7 +4,7 @@ class Solution {
         int row = matrix.length;
         int col = matrix[0].length;
 
-        boolean validation[][] = new boolean [row][col];
+        // boolean validation[][] = new boolean [row][col];/
 
         int colIndex = 1;
 
