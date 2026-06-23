@@ -14,12 +14,13 @@ class Solution {
             else dq.addLast(str);
         }
 
-        String result = "";
+        StringBuilder sb = new StringBuilder();
+
         if(dq.isEmpty()) return "/";
 
         while(!dq.isEmpty()){
-            result += "/" + dq.pollFirst();
+            sb.append("/").append(dq.pollFirst());
         }
-        return result;
+        return sb.toString();
     }
 }
