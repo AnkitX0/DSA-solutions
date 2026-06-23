@@ -12,14 +12,15 @@
 public class Solution {
     public boolean hasCycle(ListNode head) {
 
-        int maxLimit = 10002;
-        int counter = 0;
-        while(head != null ){
-            head = head.next;
-            counter++;
-            if(counter > maxLimit) return true;
-        }
+        ListNode slow = head;
+        ListNode fast = head;
 
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast) return true;
+        }
         return false;   
     }
 }
