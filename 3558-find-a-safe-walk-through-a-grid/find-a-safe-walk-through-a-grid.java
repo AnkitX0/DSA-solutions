@@ -1,7 +1,9 @@
 class Solution {
+    
     List<List<Integer>> grid;
     int m, n;
     boolean visited[][];
+
     public boolean findSafeWalk(List<List<Integer>> grid, int health) {
 
         this.grid = grid;
@@ -29,16 +31,12 @@ class Solution {
 
             if(healthMap[i][j] < health) healthMap[i][j] = health;
             else continue; 
-            
-
 
             que.add(new int[] {i + 1, j, health});
             que.add(new int[] {i, j + 1, health});
             que.add(new int[] {i - 1, j, health});
             que.add(new int[] {i, j -1, health});
-        
         }
-
         return false;
     }
 }
