@@ -2,15 +2,15 @@ class Solution {
     public int countConsistentStrings(String allowed, String[] words) {
         
         int counter  = 0;
-        HashSet<Character> set = new HashSet<>();
-
-        for(int i = 0; i < allowed.length(); i++) set.add(allowed.charAt(i));
+        int arr[] = new int [26];
+        // Arrays.fill(arr, 0);
+        for(char ch : allowed.toCharArray()) arr[ch-'a'] = 1;
 
         boolean check = false;
         for(String word : words){
 
             for(char ch : word.toCharArray()){
-                if(!set.contains(ch)){
+                if(arr[ch-'a'] == 0){
                     check = true;
                     break;
                 } 
