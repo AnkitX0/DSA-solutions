@@ -4,16 +4,11 @@ class Solution {
         int leftVowel = 0;
         int rightVowel = 0;
         
-        HashSet<Character> set = new HashSet<>();
-        char[] vowel = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
-        for(char ch : vowel) {
-            set.add(ch);
-            }
+        Set<Character> set = Set.of('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
 
         for(int i = 0; i < mid; i++){
             char ch = s.charAt(i);
             if(set.contains(ch)) {leftVowel++;}
-
             if(set.contains(s.charAt(mid + i))) {rightVowel++;}
         }
         return leftVowel == rightVowel;
