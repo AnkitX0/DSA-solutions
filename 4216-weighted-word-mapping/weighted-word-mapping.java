@@ -7,7 +7,6 @@ class Solution {
             int sum = 0;
             for(char ch : str.toCharArray()){
                 sum += weights[ch-'a'];
-                System.out.println(sum);
             }
             result += (char)(122 - (sum%26));
         }
