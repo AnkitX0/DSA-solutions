@@ -1,7 +1,7 @@
 class Solution {
     public int[] arrayRankTransform(int[] arr) {
 
-        int copy[] = Arrays.copyOf(arr, arr.length);
+        int copy[] = arr.clone();
         Arrays.sort(copy);
         HashMap<Integer, Integer> map =  new HashMap<>();
 
