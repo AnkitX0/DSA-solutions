@@ -18,12 +18,11 @@ class Solution {
         int guessCounter = 0;
 
         for(int key : guesstMap.keySet()){
-
             if(secretMap.containsKey(key)) {
                 guessCounter += Math.min(guesstMap.get(key), secretMap.get(key));
             }
         }
 
-        return String.valueOf(bullCounter) + "A" + String.valueOf(guessCounter) +"B";
+        return "" + bullCounter + "A" + guessCounter +"B";
     }
 }
