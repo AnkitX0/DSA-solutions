@@ -56,6 +56,6 @@ class Solution {
             }
             grp++;
         }
-        return head;
+        return dummy.next;
     }
 }
