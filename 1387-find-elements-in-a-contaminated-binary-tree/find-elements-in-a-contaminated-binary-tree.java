@@ -18,6 +18,14 @@ class FindElements {
     TreeNode root;
     public FindElements(TreeNode root) {
         this.root = root;
+        entryValue(root, 0);
+    }
+
+    private void entryValue(TreeNode root, int val){
+        if(root == null) return ;
+        root.val = val;
+        entryValue(root.left, 2*root.val + 1);
+        entryValue(root.right, 2*root.val + 2);
     }
     
     public boolean find(int target) {
@@ -27,15 +35,8 @@ class FindElements {
 
     private boolean traverse(TreeNode root, int target){
         if(root == null) return false;
-        if(root.val == target) return true;
-        if(root.val == target)  return true;
+        if(root.val == target || root.val == target) return true;
 
-        if(root.left != null) {
-            root.left.val = (root.val)*2 +1;
-        } 
-        if(root.right != null){
-            root.right.val = (root.val)*2 + 2;
-        }
         return traverse(root.left, target) || traverse(root.right, target);
     }
 }
