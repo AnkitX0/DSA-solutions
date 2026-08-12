@@ -20,21 +20,19 @@ class Solution {
     }
 
     public TreeNode tree(int i, int j, int[] nums){
+        if(i > j) return null;
         
         int mid = findMax(i, j, nums);
 
         TreeNode root = new TreeNode(nums[mid]);
-
-        if(mid <= i) root.left = null;
-        else root.left = tree(i, mid-1, nums);
-        
-        if(mid >= j)root.right = null;
-        else root.right = tree( mid+1, j, nums);
+        root.left = tree(i, mid-1, nums);
+        root.right = tree( mid+1, j, nums);
     
         return root;
     }
 
     public int findMax (int i, int j, int[] nums){
+        
         int idx = i;
         for(; i <= j; i++){
             if(nums[i] > nums[idx]) idx = i;
