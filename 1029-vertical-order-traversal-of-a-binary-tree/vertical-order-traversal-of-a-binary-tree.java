@@ -37,13 +37,8 @@ class Solution {
 
             if(map.containsKey(curr.idx)){
                 TreeMap<Integer, List<Integer>> height = map.get(curr.idx);  
-                List<Integer> lis;
-                if(!height.containsKey(curr.depth)){
-                    lis = new ArrayList<>();
-                }
-                else {
-                    lis = height.get(curr.depth);
-                }
+
+                List<Integer> lis = (!height.containsKey(curr.depth)) ? new ArrayList<>() : height.get(curr.depth);
 
                 lis.add(curr.root.val);
                 height.put(curr.depth, lis);
