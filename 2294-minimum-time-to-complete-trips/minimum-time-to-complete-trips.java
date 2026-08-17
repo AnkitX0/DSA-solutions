@@ -1,8 +1,11 @@
 class Solution {
     public long minimumTime(int[] time, int totalTrips) {
-        Arrays.sort(time);
+        // Arrays.sort(time);
         long low = 1;
-        long high = (long)time[0]*(long)totalTrips;
+        long high = time[0];
+        for(int i : time) high = i < high ? i : high;
+
+        high *= (long)totalTrips;
 
         while(low <= high){
             long mid = low + (high-low) / 2;
