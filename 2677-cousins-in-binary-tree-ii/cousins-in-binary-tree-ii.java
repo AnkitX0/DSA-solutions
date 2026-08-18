@@ -46,8 +46,6 @@ class Solution {
             }
             map.put(level++, sum);
         }
-        System.out.println(map);
-        System.out.println(sibling);
         dfs(root, 0);
         return root;
     }
