@@ -1,10 +1,9 @@
 class Solution {
     public int smallestNumber(int n) {
         
-        int num = 0;
-        int idx = 1;
+        int num = 1;
         while(num <= n){
-            num =  1 << (idx++);
+            num <<= 1;
         }
         return num-1;
     }
