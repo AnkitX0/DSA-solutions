@@ -30,8 +30,8 @@ class Solution {
             sb.append(p1.ch);
             sb.append(p2.ch);
 
-            if(p1.count > 1) pq.add(new Pair(p1.ch, p1.count-1));
-            if(p2.count > 1) pq.add(new Pair(p2.ch, p2.count-1));
+            if(p1.count-- > 1) pq.add(p1);
+            if(p2.count-- > 1) pq.add(p2);
         }
         if(!pq.isEmpty()){Pair p2 = pq.poll();
         sb.append(p2.ch);}
