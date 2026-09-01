@@ -7,10 +7,6 @@ class Solution {
             if(nums[i] < nums[minIdx]) minIdx = i;
         }
         int n = nums.length;
-        int left = Math.max(minIdx, maxIdx) + 1;
-        int right = n - Math.min(minIdx, maxIdx);
-        int mid = Math.min(minIdx, maxIdx) + (n - Math.max(minIdx, maxIdx)) + 1;
-
-        return Math.min(mid, Math.min(left, right));
+        return Math.min((Math.min(minIdx, maxIdx) + (n - Math.max(minIdx, maxIdx)) + 1), Math.min((Math.max(minIdx, maxIdx) + 1), (n - Math.min(minIdx, maxIdx))));
     }
 } 
