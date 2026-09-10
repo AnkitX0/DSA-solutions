@@ -15,26 +15,32 @@
  */
 class Solution {
     public int averageOfSubtree(TreeNode root) {
-        if(root == null) return 0;
+        Queue<TreeNode> qu = new LinkedList<>();
+        qu.add(root);
+        int res = 0;
 
-        int sum = avgCounter(root);
-        int n = depth(root);
+        while(!qu.isEmpty()){
+            TreeNode curr = qu.poll();
 
-        if(sum / n == root.val) n = 1;
-        else n = 0;
+            int count = counter(curr);
+            int sum = subTree(curr);
 
-        return n + averageOfSubtree(root.left) + averageOfSubtree(root.right);
+            if (sum / count == curr.val) res++;
 
+
+            if(curr.left != null) qu.add(curr.left);
+            if(curr.right != null) qu.add(curr.right);
+        }
+        return res;
     }
 
-    public int avgCounter(TreeNode root){
-        if(root == null) return 0;
-        return root.val + avgCounter(root.left) + avgCounter(root.right);
+    private int counter(TreeNode root){
+        if (root == null) return 0;
+        return 1 + counter(root.left) + counter(root.right);
     }
 
-    public int depth(TreeNode root){
+    private int subTree(TreeNode root){
         if(root == null) return 0;
-
-        return 1+ depth(root.left )+ depth(root.right);
+        return root.val + subTree(root.left) + subTree(root.right);
     }
 }
