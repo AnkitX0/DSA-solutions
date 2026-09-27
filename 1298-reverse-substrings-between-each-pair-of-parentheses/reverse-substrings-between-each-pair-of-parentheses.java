@@ -18,10 +18,7 @@ class Solution {
                 }
                 else sb.append(s.charAt(i));
                 i++;
-                
-                if(!stk.isEmpty()) System.out.println(stk.peek());
             }
         return sb.toString();
-        // return "";
     }
 }
