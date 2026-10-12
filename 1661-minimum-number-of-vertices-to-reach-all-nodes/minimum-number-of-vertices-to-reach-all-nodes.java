@@ -17,24 +17,13 @@ class Solution {
         
         for(List<Integer> lis : edges){
             int i = lis.get(0);
-
             if(visited[i]) continue;
             ans.add(i);
-            traverse(graph, i, visited);
+            visited[i] = true;
         }
         return ans;
 
 
     }
     
-    private void traverse(List<List<Integer>> graph, int i, boolean[] visited){
-
-        if(visited[i]) return;
-
-        visited[i] = true;
-
-        for(int val : graph.get(i)){
-            traverse(graph, val, visited);
-        }
-    }
 }
