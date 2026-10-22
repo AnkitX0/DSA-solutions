@@ -14,49 +14,51 @@
  * }
  */
 class Solution {
+    TreeNode startingNode = null;
+    int counter = 0;
     public int amountOfTime(TreeNode root, int start) {
-        HashMap<TreeNode, TreeNode> parent = new HashMap<>();
+        
+        HashMap<TreeNode, TreeNode> map = new HashMap<>();
+        traverse(root, start, map, null);
 
-        Queue<TreeNode> que = new LinkedList<>();
+        Queue<TreeNode> qu = new ArrayDeque<>();
+        qu.offer(startingNode);
+        startingNode.val = -1;
 
-        TreeNode startNode = dfs(root, parent, null, start);
-        que.add(startNode);
-        startNode.val = -1;
         int time = -1;
-        while(!que.isEmpty()){
-            int size = que.size();
-            
-            while(size-- > 0){
-                TreeNode node = que.poll();
 
-                if(parent.get(node) != null && parent.get(node).val != -1) {
-                    que.add(parent.get(node));
-                    parent.get(node).val = -1;
+        while(!qu.isEmpty()){
+            int size = qu.size();
+            while(size-- > 0){
+                TreeNode cur = qu.poll();
+                if(map.get(cur) != null && map.get(cur).val != -1) {
+                    qu.offer(map.get(cur));
+                    map.get(cur).val = -1;
                 }
-                if(node.left != null && node.left.val != -1) {
-                    que.add(node.left);
-                    node.left.val = -1;
+                if(cur.left != null && cur.left.val != -1) {
+                    qu.offer(cur.left);
+                    cur.left.val = -1;
                 }
-                if(node.right != null && node.right.val != -1) {
-                    que.add(node.right);
-                    node.right.val = -1;
+                if(cur.right != null && cur.right.val != -1) {
+                    qu.offer(cur.right);
+                    cur.right.val = -1;
                 }
+                
             }
-            time ++;
+            time++;
         }
-        return time;        
+
+        return time;
     }
 
-    public TreeNode dfs (TreeNode root,HashMap<TreeNode, TreeNode> parents, TreeNode parent, int start){
-        if(root == null) return null;
+    public void traverse(TreeNode root, int start, HashMap<TreeNode, TreeNode> map, TreeNode parent){
+        if(root == null) return;
 
-        parents.put(root, parent);
-        TreeNode left = dfs(root.left, parents, root, start);
-        TreeNode right = dfs(root.right, parents, root, start);
+        if(root.val == start) startingNode = root;
 
-        if(left != null) return left;
-        if(right != null) return right;
-        if(root.val == start) return root;
-        return null;
+        map.put(root, parent);
+        traverse(root.left,start, map, root);
+        traverse(root.right,start, map, root);
+        counter++;
     }
 }
