@@ -5,20 +5,12 @@ class Solution {
         n = grid[0].length;
 
         int counter = 0;
-        boolean[][] visited = new boolean[m][n];
 
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
-                if(grid[i][j] == 0) {
-                    visited[i][j] = true;
-                }
-            }
-        }
+                if(grid[i][j] != 0) {
+                    long val = traverse(grid, i, j);
 
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(!visited[i][j]) {
-                    long val = traverse(grid, i, j, visited);
                     if(val % k == 0) counter++;
                 }
             }
@@ -26,17 +18,18 @@ class Solution {
         return counter;
     }
 
-    public long traverse(int[][] grid, int i, int j, boolean[][] visited){
+    public long traverse(int[][] grid, int i, int j){
 
-        if(i < 0 || j < 0 || i >= m || j >= n || visited[i][j]) return 0;
+        if(i < 0 || j < 0 || i >= m || j >= n || grid[i][j] == 0) return 0;
 
-        visited[i][j] = true;
+        long sum = grid[i][j];
+        grid[i][j] = 0;
 
-        long left = traverse(grid, i, j -1 , visited);
-        long right = traverse(grid, i, j + 1, visited);
-        long down = traverse(grid, i + 1, j, visited);
-        long up = traverse(grid, i - 1, j, visited);
+        sum += traverse(grid, i, j -1);
+        sum += traverse(grid, i, j + 1);
+        sum += traverse(grid, i + 1, j);
+        sum += traverse(grid, i - 1, j);
 
-        return grid[i][j] + left + right + down + up;
+        return sum;
     }
 }
