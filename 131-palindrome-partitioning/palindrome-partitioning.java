@@ -6,7 +6,6 @@ class Solution {
         result = new ArrayList<>();        
         recursion(s, 0);
         
-        System.out.println(result);
         return result;
     }
 
