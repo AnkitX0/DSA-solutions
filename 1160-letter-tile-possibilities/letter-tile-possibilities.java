@@ -6,7 +6,6 @@ class Solution {
         this.tiles = tiles;
         recursion(new boolean[tiles.length()], new StringBuilder());
 
-        System.out.println(set);
         return set.size();
 
     }
